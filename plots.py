@@ -105,6 +105,14 @@ def show_hinton():
 	hinton(np.random.rand(20,20)-0.5)
 	plt.show()
 
+def strip_contour():
+	fig = plt.figure()
+	ax = fig.gca(projection='3d')
+	x,y,z=axes3d.get_test_data(0.05)
+	cset=ax.contour(x,y,z,extend3d=True,cmap=cm.coolwarm)
+	ax.clabel(cset,fontsize=9,inline=1)
+	plt.show()
+
 def contour():
 	fig = plt.figure()
 	ax = fig.gca(projection='3d')
@@ -149,7 +157,8 @@ def tricontour():
 #rotate()
 #show_hinton()
 #tricontour()
-contour()
+#contour()
+strip_contour()
 
 
 
