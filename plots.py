@@ -1,5 +1,6 @@
 from __future__ import print_function
 from mpl_toolkits.mplot3d import Axes3D
+from mpl_toolkits.mplot3d  import axes3d
 from matplotlib import cbook
 from matplotlib import cm
 from matplotlib.colors import LightSource
@@ -17,6 +18,16 @@ def generate(x, y, phi):
 	r = 1 - np.sqrt(x**2 + y**2)
 	return np.cos(2*np.pi * x + phi)
 
+def rotate():
+	fig = plt.figure()
+	ax = fig.add_subplot(111, projection='3d')
+	x,y,z = axes3d.get_test_data(0.1)
+	ax.plot_wireframe(x,y,z,rstride=5,cstride=5)
+	for angle in range(0,360):
+		ax.view_init(30,angle)
+		plt.draw()
+		plt.pause(.001)
+
 def step_lorenz():
 	dt = 0.01
 	stepCounter = 10000
@@ -24,14 +35,11 @@ def step_lorenz():
 	ys = np.empty((stepCounter + 1,))
 	zs = np.empty((stepCounter + 1,))
 	xs[0], ys[0], zs[0] = (0., 1., 1.05)
-
 	for i in range(stepCounter):
 		x_dot, y_dot, z_dot = lorenz(xs[i], ys[i], zs[i])
 		xs[i+1] = xs[i] + (x_dot * dt)
 		ys[i+1] = ys[i] + (y_dot * dt)
 		zs[i+1] = zs[i] + (z_dot * dt)
-	
-	# ax.set_title("Lorenz Attractor")
 	fig = plt.figure()
 	ax = fig.gca(projection='3d')
 	ax.plot(xs, ys, zs, lw = 0.5)
@@ -75,9 +83,32 @@ def surface():
 		linewidth=0, antialiased=False,shade=False)
 	plt.show()
 
-step_lorenz()
-simple_animation()
-surface()
+def hinton(matrix, max_weight=None, ax=None):
+	ax = ax if ax is not None else plt.gca()
+	if not max_weight:
+		max_weight=2**np.ceil(np.log(np.abs(matrix).max()) / np.log(2))
+	ax.patch.set_facecolor('gray')
+	ax.set_aspect('equal', 'box')
+	ax.xaxis.set_major_locator(plt.NullLocator())
+	ax.yaxis.set_major_locator(plt.NullLocator())
+	for (x,y), w in np.ndenumerate(matrix):
+		color = 'white' if w > 0 else 'black'
+		size = np.sqrt(np.abs(w) / max_weight)
+		rect = plt.Rectangle([x-size / 2, y-size/2], size, size, facecolor=color, edgecolor=color)
+		ax.add_patch(rect)
+	ax.autoscale_view()
+	ax.invert_yaxis()		
+
+def show_hinton():
+	hinton(np.random.rand(20,20)-0.5)
+	plt.show()
+	
+
+#step_lorenz()
+#simple_animation()
+#surface()
+#rotate()
+show_hinton()
 
 
 
