@@ -6,6 +6,7 @@ from matplotlib import cm
 from matplotlib.colors import LightSource
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.tri as tri
 import time
 
 def lorenz(x, y, z, s=10, r=28, b=2.667):
@@ -103,13 +104,35 @@ def hinton(matrix, max_weight=None, ax=None):
 def show_hinton():
 	hinton(np.random.rand(20,20)-0.5)
 	plt.show()
+
+def tricontour():
+	n_angles = 48
+	n_radii = 8
+	min_radius = 0.25
+	radii = np.linspace(min_radius,0.95,n_radii)
+	angles = np.linspace(0,2*np.pi,n_angles,endpoint=False)
+	angles = np.repeat(angles[...,np.newaxis], n_radii, axis=1)
+	angles[:, 1::2] += np.pi / n_angles
+	x = (radii*np.cos(angles)).flatten()
+	y = (radii*np.sin(angles)).flatten()
+	z = (np.cos(radii)*np.cos(angles*3.0)).flatten()
+	triang = tri.Triangulation(x,y)
+	xmid = x[triang.triangles].mean(axis=1)
+	ymid = y[triang.triangles].mean(axis=1)
+	mask = np.where(xmid*xmid + ymid*ymid < min_radius*min_radius,1,0)
+	triang.set_mask(mask)
+	fig = plt.figure()
+	ax = fig.gca(projection='3d')
+	ax.tricontour(triang,z,cmap=plt.cm.CMRmap)
+	plt.show()
 	
 
 #step_lorenz()
 #simple_animation()
 #surface()
 #rotate()
-show_hinton()
+#show_hinton()
+tricontour()
 
 
 
