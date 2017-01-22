@@ -151,6 +151,21 @@ def tricontour():
 	plt.show()
 	
 
+def contourf_hatching():
+	x = np.linspace(-3,5,120).reshape(1,-1)
+	y=np.linspace(-3,5,120).reshape(-1,1)
+	z=np.cos(x)+np.sin(y)
+	x,y=x.flatten(),y.flatten()
+	fig=plt.figure()
+	cs=plt.contourf(x,y,z,hatches=['-','/','\\','//'],cmap=plt.get_cmap('gray'),extend='both',alhpa=0.5)
+	plt.colorbar()
+	plt.figure()
+	n_levels=6
+	plt.contourf(x,y,z,n_levels,colors='none',hatches=['.','/','\\', None,'\\\\','*'],extend='lower')	
+	artists,labels=cs.legend_elements()
+	plt.legend(artists,labels,handleheight=2)
+	plt.show()
+
 #step_lorenz()
 #simple_animation()
 #surface()
@@ -158,7 +173,8 @@ def tricontour():
 #show_hinton()
 #tricontour()
 #contour()
-strip_contour()
+#strip_contour()
+contourf_hatching()
 
 
 
