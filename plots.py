@@ -4,6 +4,7 @@ from mpl_toolkits.mplot3d  import axes3d
 from matplotlib import cbook
 from matplotlib import cm
 from matplotlib.colors import LightSource
+from matplotlib import colors
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.tri as tri
@@ -157,11 +158,13 @@ def contourf_hatching():
 	z=np.cos(x)+np.sin(y)
 	x,y=x.flatten(),y.flatten()
 	fig=plt.figure()
-	cs=plt.contourf(x,y,z,hatches=['-','/','\\','//'],cmap=plt.get_cmap('gray'),extend='both',alhpa=0.5)
+	cs=plt.contourf(x,y,z,hatches=['-','/','\\','//'],
+		cmap=plt.get_cmap('gray'),extend='both',alhpa=0.5)
 	plt.colorbar()
 	plt.figure()
 	n_levels=6
-	plt.contourf(x,y,z,n_levels,colors='none',hatches=['.','/','\\', None,'\\\\','*'],extend='lower')	
+	plt.contourf(x,y,z,n_levels,colors='none',
+		hatches=['.','/','\\', None,'\\\\','*'],extend='lower')	
 	artists,labels=cs.legend_elements()
 	plt.legend(artists,labels,handleheight=2)
 	plt.show()
@@ -180,6 +183,44 @@ def triangular():
 	ax.plot_trisurf(x,y,z,linewidth=0.2,antialiased=True)
 	plt.show()
 
+def mandelbrot_set(xmin,xmax,ymin,ymax,xn,yn,maxiter,horizon=2.0):
+	x=np.linspace(xmin,xmax,xn,dtype=np.float32)
+	y=np.linspace(ymin,ymax,yn,dtype=np.float32)
+	c=x+y[:,None]*1j
+	n_=np.zeros(c.shape,dtype=int)
+	z=np.zeros(c.shape,np.complex64)
+	for n in range(maxiter):
+		i=np.less(abs(z),horizon)
+		n_[i]=n
+		z[i]=z[i]**2+c[i]
+	n_[n_==maxiter-1]=0
+	return z,n_
+
+def mandelbrot_main():
+	xmin,xmax,xn=-2.25,+0.75,3000/2
+	ymin,ymax,yn=-1.25,+1.25,2500/2
+	maxiter=200
+	horizon=2.0**40
+	log_horizon=np.log(np.log(horizon))/np.log(2)
+	z,n=mandelbrot_set(xmin,xmax,ymin,ymax,xn,yn,maxiter,horizon)
+	with(np.errstate(invalid='ignore')):
+		m=np.nan_to_num(n+1-np.log(np.log(abs(z)))/np.log(2)+log_horizon)
+	dpi=72
+	width=10
+	height=10*yn/xn
+	fig=plt.figure(figsize=(width,height),dpi=dpi)
+	ax=fig.add_axes([0.0,0.0,1.0,1.0],frameon=False,aspect=1)
+	light=colors.LightSource(azdeg=315,altdeg=10)
+	m=light.shade(m,cmap=plt.cm.hot,vert_exag=1.5,norm=colors.PowerNorm(0.3),blend_mode='hsv')
+	plt.imshow(m,extent=[xmin,xmax,ymin,ymax],interpolation='bicubic')
+	ax.set_xticks([])
+	ax.set_yticks([])
+	plt.show()
+	
+	
+
+	
+mandelbrot_main()
 #step_lorenz()
 #simple_animation()
 #surface()
@@ -189,7 +230,7 @@ def triangular():
 #contour()
 #strip_contour()
 #contourf_hatching()
-triangular()
+#triangular()
 
 
 
