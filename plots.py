@@ -8,6 +8,7 @@ from matplotlib import colors
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.tri as tri
+import matplotlib.cm as cm
 import time
 
 def lorenz(x, y, z, s=10, r=28, b=2.667):
@@ -216,11 +217,22 @@ def mandelbrot_main():
 	ax.set_xticks([])
 	ax.set_yticks([])
 	plt.show()
-	
-	
 
+def randrange(n,vmin,vmax):
+	return(vmax-vmin)*np.random.rand(n)+vmin
+
+def scatterplot():
+	fig=plt.figure()
+	ax=fig.add_subplot(111,projection='3d')
+	n=100
+	for c,m,zlow,zhigh in [('r','o',-50,-25),('b','^',-30,-5)]:
+		xs=randrange(n,23,32)
+		ys=randrange(n,0,100)
+		zs=randrange(n,zlow,zhigh)
+		ax.scatter(xs,ys,zs,c=c,marker=m)
+	plt.show()
 	
-mandelbrot_main()
+#mandelbrot_main()
 #step_lorenz()
 #simple_animation()
 #surface()
@@ -231,6 +243,6 @@ mandelbrot_main()
 #strip_contour()
 #contourf_hatching()
 #triangular()
-
+scatterplot()
 
 
