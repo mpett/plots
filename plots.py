@@ -232,6 +232,27 @@ def scatterplot():
 		ax.scatter(xs,ys,zs,c=c,marker=m)
 	plt.show()
 	
+def collections():
+	fig=plt.figure()
+	ax=fig.gca(projection='3d')
+	x=np.linspace(0,1,100)
+	y=np.sin(x*2*np.pi)/2+0.5
+	ax.plot(x,y,zs=0,zdir='z',label='curve in (x,y)')
+	colors=('r','g','b','k')
+	x=np.random.sample(20*len(colors))
+	y=np.random.sample(20*len(colors))
+	c_list=[]
+	for c in colors:
+		c_list.append([c]*20)
+	ax.scatter(x,y,zs=0,zdir='y',c=c_list,label='points in (x,z)')
+	ax.legend()
+	ax.set_xlim(0,1)
+	ax.set_ylim(0,1)
+	ax.set_zlim(0,1)
+	ax.view_init(elev=20.,azim=-35)
+	plt.show()
+	
+
 #mandelbrot_main()
 #step_lorenz()
 #simple_animation()
@@ -243,6 +264,7 @@ def scatterplot():
 #strip_contour()
 #contourf_hatching()
 #triangular()
-scatterplot()
+#scatterplot()
+collections()
 
 
