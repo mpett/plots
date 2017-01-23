@@ -251,6 +251,15 @@ def collections():
 	ax.set_zlim(0,1)
 	ax.view_init(elev=20.,azim=-35)
 	plt.show()
+
+def offset():
+	fig = plt.figure()
+	ax=fig.gca(projection='3d')
+	x,y=np.mgrid[0:6*np.pi:0.25,0:4*np.pi:0.25]
+	z=np.sqrt(np.abs(np.cos(x)+np.cos(y)))
+	surf=ax.plot_surface(x+1e5,y+1e5,z,cmap='autumn',cstride=2,rstride=2)
+	ax.set_zlim(0,2)
+	plt.show()
 	
 
 #mandelbrot_main()
@@ -265,6 +274,7 @@ def collections():
 #contourf_hatching()
 #triangular()
 #scatterplot()
-collections()
+#collections()
+offset()
 
 
