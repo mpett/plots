@@ -260,7 +260,17 @@ def offset():
 	surf=ax.plot_surface(x+1e5,y+1e5,z,cmap='autumn',cstride=2,rstride=2)
 	ax.set_zlim(0,2)
 	plt.show()
-	
+
+def surface():
+	fig =plt.figure()
+	ax=fig.add_subplot(111,projection='3d')
+	u=np.linspace(0,2*np.pi,100)
+	v=np.linspace(0,np.pi,100)
+	x=10*np.outer(np.cos(u),np.sin(v))
+	y=10*np.outer(np.sin(u),np.sin(v))
+	z=10*np.outer(np.ones(np.size(u)),np.cos(v))
+	ax.plot_surface(x,y,z,color='b')
+	plt.show()
 
 #mandelbrot_main()
 #step_lorenz()
@@ -275,6 +285,7 @@ def offset():
 #triangular()
 #scatterplot()
 #collections()
-offset()
+#offset()
+surface()
 
 
