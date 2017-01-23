@@ -272,6 +272,30 @@ def surface():
 	ax.plot_surface(x,y,z,color='b')
 	plt.show()
 
+def streamplot():
+	y,x=np.mgrid[-3:3:100j, -3:3:100j]
+	u=-1-x**2+y
+	v=1+x-y**2
+	speed=np.sqrt(u*u+v*v)
+	fig0,ax0=plt.subplots()
+	strm=ax0.streamplot(x,y,u,v,color=u,linewidth=2,cmap=plt.cm.autumn)
+	fig0.colorbar(strm.lines)
+	fig1, (ax1,ax2)=plt.subplots(ncols=2)
+	ax1.streamplot(x,y,u,v,density=[0.5,1])
+	lw=5*speed/speed.max()
+	ax2.streamplot(x,y,u,v,density=0.6,color='k',linewidth=lw)
+	plt.show()
+
+def quiver():
+	fig=plt.figure()
+	ax=fig.gca(projection='3d')
+	x,y,z=np.meshgrid(np.arange(-0.8,1,0.2),np.arange(-0.8,1,0.2),np.arange(-0.8,1,0.8))
+	u=np.sin(np.pi*x)*np.cos(np.pi*y)*np.cos(np.pi*z)
+	v=-np.cos(np.pi*x)*np.sin(np.pi*y)*np.cos(np.pi*z)
+	w=(np.sqrt(2.0/3.0)*np.cos(np.pi*x)*np.cos(np.pi*y)*np.sin(np.pi*z))
+	ax.quiver(x,y,z,u,v,w,length=0.1)
+	plt.show()
+
 #mandelbrot_main()
 #step_lorenz()
 #simple_animation()
@@ -286,6 +310,8 @@ def surface():
 #scatterplot()
 #collections()
 #offset()
-surface()
+#surface()
+#streamplot()
+quiver()
 
 
