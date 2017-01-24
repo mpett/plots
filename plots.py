@@ -3,7 +3,7 @@ from mpl_toolkits.mplot3d import Axes3D
 from mpl_toolkits.mplot3d  import axes3d
 from matplotlib import cbook
 from matplotlib import cm
-from matplotlib.colors import LightSource
+from matplotlib.colors import LightSource,Normalize
 from matplotlib import colors
 import numpy as np
 import matplotlib.pyplot as plt
@@ -296,6 +296,86 @@ def quiver():
 	ax.quiver(x,y,z,u,v,w,length=0.1)
 	plt.show()
 
+def trisurf():
+	fig=plt.figure(figsize=plt.figaspect(0.5))
+	u=np.linspace(0,2.0*np.pi,endpoint=True,num=50)
+	v=np.linspace(-0.5,0.5,endpoint=True,num=10)
+	u,v=np.meshgrid(u,v)
+	u,v=u.flatten(),v.flatten()
+	x=(1+0.5*v*np.cos(u/2.0))*np.cos(u)
+	y=(1+0.5*v*np.cos(u/2.0))*np.sin(u)
+	z=0.5*v*np.sin(u/2.0)
+	mtri=tri.Triangulation(u,v)
+	ax=fig.add_subplot(1,2,1,projection='3d')
+	ax.plot_trisurf(x,y,z,triangles=mtri.triangles,cmap=plt.cm.Spectral)
+	ax.set_zlim(-1,1)
+	n_angles=36
+	n_radii=8
+	min_radius=0.25
+	radii=np.linspace(min_radius,0.95,n_radii)
+	angles=np.linspace(0,2*np.pi,n_angles,endpoint=False)
+	angles=np.repeat(angles[...,np.newaxis],n_radii,axis=1)
+	angles[:,1::2]+=np.pi/n_angles
+	x=(radii*np.cos(angles)).flatten()
+	y=(radii*np.sin(angles)).flatten()
+	z=(np.cos(radii)*np.cos(angles*3.0)).flatten()
+	triang=tri.Triangulation(x,y)
+	xmid=x[triang.triangles].mean(axis=1)
+	ymid=y[triang.triangles].mean(axis=1)
+	mask=np.where(xmid**2+ymid**2<min_radius**2,1,0)
+	triang.set_mask(mask)
+	ax=fig.add_subplot(1,2,2,projection='3d')
+	ax.plot_trisurf(triang,z,cmap=plt.cm.CMRmap)
+	plt.show()
+
+def display_colorbar():
+	y,x=np.mgrid[-4:2:200j,-4:2:200j]
+	z=10*np.cos(x**2+y**2)
+	cmap=plt.cm.copper
+	ls=LightSource(315,45)
+	rgb=ls.shade(z,cmap)
+	fig,ax=plt.subplots()
+	ax.imshow(rgb,interpolation='bilinear')
+	im=ax.imshow(z,cmap=cmap)
+	im.remove()
+	fig.colorbar(im)
+	ax.set_title('Using a colorbar with a shaded plot',size='x-large')
+
+def avoid_outliers():
+	y,x=np.mgrid[-4:2:200j,-4:2:200j]
+	z=10*np.cos(x**2+y**2)
+	z[100,105]=2000
+	z[120,110]=-9000
+	ls=LightSource(315,45)
+	fig,(ax1,ax2)=plt.subplots(ncols=2,figsize=(8,4.5))
+	rgb=ls.shade(z,plt.cm.copper)
+	ax1.imshow(rgb,interpolation='bilinear')
+	ax1.set_title('Fullrange of data')
+	rgb=ls.shade(z,plt.cm.copper,vmin=-10,vmax=10)
+	ax2.imshow(rgb,interpolation='bilinear')
+	ax2.set_title('Manually set range')
+	fig.suptitle('Avoiding outliers in shaded plots',size='x-large')
+
+def shade_other_data():
+	y,x=np.mgrid[-4:2:200j,-4:2:200j]
+	z1=np.sin(x**2)
+	z2=np.cos(x**2+y**2)
+	norm=Normalize(z2.min(),z2.max())
+	cmap=plt.cm.RdBu
+	ls=LightSource(315,45)
+	rgb=ls.shade_rgb(cmap(norm(z2)),z1)
+	fig,ax=plt.subplots()
+	ax.imshow(rgb,interpolation='bilinear')
+	ax.set_title('Shade by one variable, color by another', size='x-large')
+
+def hillshading():
+	display_colorbar()
+	avoid_outliers()
+	shade_other_data()
+	plt.show()
+	
+	
+	
 #mandelbrot_main()
 #step_lorenz()
 #simple_animation()
@@ -312,6 +392,8 @@ def quiver():
 #offset()
 #surface()
 #streamplot()
-quiver()
+#quiver()
+#trisurf()
+hillshading()
 
 
