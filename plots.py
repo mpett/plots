@@ -5,6 +5,9 @@ from matplotlib import cbook
 from matplotlib import cm
 from matplotlib.colors import LightSource,Normalize
 from matplotlib import colors
+from matplotlib.animation import FuncAnimation
+from matplotlib.cm import inferno as colormap
+from matplotlib.colors import LogNorm
 from scipy.integrate import odeint
 import numpy as np
 import matplotlib.pyplot as plt
@@ -409,6 +412,42 @@ def another_plot():
 	z=np.sin(r)
 	surf=ax.plot_surface(x,y,z,rstride=1,cstride=1,cmap=cm.coolwarm)
 	plt.show()
+
+def rgb_cube():
+	bits=5
+	fig=plt.figure()
+	fig.subplots_adjust(left=0,bottom=0,right=1,top=1)
+	ax=fig.add_subplot(111,projection='3d')
+	ax.set_axis_bgcolor((0.5,0.5,0.5))
+	gradient=np.linspace(0,1,2**bits)
+	x,y,z=np.meshgrid(gradient,gradient,gradient)
+	colors=np.stack((x.flatten(),y.flatten(),z.flatten()),axis=1)
+	ax.scatter(x,y,z,alpha=1.0,s=100./2**bits,c=colors,marker='o',linewidth='0')
+	def update(i):
+		ax.view_init(elev=20.,azim=i)
+		return fig,ax
+	plt.axis('off')
+	fig.set_size_inches(5,5)
+	anim=FuncAnimation(fig,update,frames=np.arange(0,360,2),repeat=True)
+	anim.save('%d-bit.color.gif' %(3*bits),dpi=80,writer='imagemagick',fps=24)
+
+def rosenbrock_function():
+	fig =plt.figure()
+	fig.clf()
+	ax=Axes3D(fig,azim=-128.0,elev=43.0)
+	s=0.05
+	x=np.arange(-2.0,2.0+s,s)
+	y=np.arange(-1.0,3.0+s,s)
+	x,y=np.meshgrid(x,y)
+	z=(1.0-x)**2+100.0*(y-x*x)**2
+	ax.plot_surface(x,y,z,rstride=1,cstride=1,norm=LogNorm(),cmap=colormap,linewidth=0,edgecolor='none')
+	ax.set_xlim([-2,2])
+	ax.set_ylim([-1,3])
+	ax.set_zlim([0,2500])
+	plt.show()
+	
+
+	
 		
 #mandelbrot_main()
 #step_lorenz()
@@ -430,5 +469,6 @@ def another_plot():
 #trisurf()
 #hillshading()
 #plot_lorenz2()
-another_plot()
-
+#another_plot()
+#rgb_cube()
+rosenbrock_function()
