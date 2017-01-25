@@ -5,6 +5,7 @@ from matplotlib import cbook
 from matplotlib import cm
 from matplotlib.colors import LightSource,Normalize
 from matplotlib import colors
+from scipy.integrate import odeint
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.tri as tri
@@ -373,6 +374,30 @@ def hillshading():
 	avoid_outliers()
 	shade_other_data()
 	plt.show()
+
+def lorenz2(state,t):
+	x=state[0]
+	y=state[1]
+	z=state[2]
+	sigma=10.0
+	rho=28.0
+	beta=8.0/3.0
+	xd=sigma*(y-x)
+	yd=(rho-z)*x-y
+	zd=x*y-beta*x
+	return[xd,yd,zd]
+
+def plot_lorenz2():
+	state0=[1.0,1.0,1.0]
+	t=np.arange(0.0,30.0,0.01)
+	state=odeint(lorenz2,state0,t)
+	fig=plt.figure()
+	ax=fig.gca(projection='3d')
+	ax.plot(state[:,0],state[:,1],state[:,2])
+	ax.set_xlabel('x')
+	ax.set_ylabel('y')
+	ax.set_zlabel('z')
+	plt.show()
 	
 	
 	
@@ -394,7 +419,7 @@ def hillshading():
 #streamplot()
 #quiver()
 #trisurf()
-hillshading()
-
+#hillshading()
+#plot_lorenz2()
 
 
