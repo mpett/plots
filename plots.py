@@ -445,10 +445,19 @@ def rosenbrock_function():
 	ax.set_ylim([-1,3])
 	ax.set_zlim([0,2500])
 	plt.show()
-	
 
+def another_graphic():
+	fig=plt.figure()
+	ax=Axes3D(fig)
+	x=np.arange(-4,4,0.25)
+	y=np.arange(-4,4,0.25)
+	x,y=np.meshgrid(x,y)
+	r=np.sqrt(x**2+y**2)
+	z=np.sin(r)
+	ax.plot_surface(x,y,z,rstride=1,cstride=1,cmap='hot')
+	plt.show()
 	
-		
+another_graphic()		
 #mandelbrot_main()
 #step_lorenz()
 #simple_animation()
@@ -471,4 +480,4 @@ def rosenbrock_function():
 #plot_lorenz2()
 #another_plot()
 #rgb_cube()
-rosenbrock_function()
+#rosenbrock_function()
