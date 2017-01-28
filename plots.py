@@ -489,6 +489,7 @@ def basic_animation():
 			ax.figure.canvas.draw()
 		line.set_data(xdata,ydata)
 		return line,
+
 	ani=animation.FuncAnimation(fig,run,data_gen,blit=False,interval=10,repeat=False,init_func=init)
 	plt.show()
 
