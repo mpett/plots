@@ -14,6 +14,7 @@ import matplotlib.pyplot as plt
 import matplotlib.tri as tri
 import matplotlib.cm as cm
 import matplotlib.animation as animation
+import mpl_toolkits.mplot3d.axes3d as p3
 import time
 
 def lorenz(x, y, z, s=10, r=28, b=2.667):
@@ -493,6 +494,35 @@ def basic_animation():
 	ani=animation.FuncAnimation(fig,run,data_gen,blit=False,interval=10,repeat=False,init_func=init)
 	plt.show()
 
+def simple_3d_animation():
+	def gen_randline(length,dims=2):
+		line_data=np.empty((dims,length))
+		line_data[:,0]=np.random.rand(dims)
+		for index in range(1,length):
+			step=((np.random.rand(dims)-0.5)*0.1)
+			line_data[:,index]=line_data[:,index-1]+step
+		return line_data
+	
+	def update_lines(num,data_lines,lines):
+		for line,data in zip(lines,data_lines):
+			line.set_data(data[0:2,:num])
+			line.set_3d_properties(data[2,:num])
+		return lines
+	
+	fig=plt.figure()
+	ax=p3.Axes3D(fig)
+	data=[gen_randline(25,3) for index in range(50)]
+	lines=[ax.plot(dat[0,0:1],dat[1,0:1],dat[2,0:1])[0] for dat in data]
+	ax.set_xlim3d([0.0,1.0])
+	ax.set_xlabel('X')
+	ax.set_ylim3d([0.0,1.0])
+	ax.set_ylabel('Y')
+	ax.set_zlim3d([0.0,1.0])
+	ax.set_zlabel("Z")
+	line_ani=animation.FuncAnimation(fig,update_lines,25,fargs=(data,lines),interval=50,blit=False)
+	plt.show()
+	
+
 #another_graphic()		
 #mandelbrot_main()
 #step_lorenz()
@@ -517,4 +547,5 @@ def basic_animation():
 #another_plot()
 #rgb_cube()
 #rosenbrock_function()
-basic_animation()
+#basic_animation()
+simple_3d_animation()
