@@ -1,31 +1,31 @@
+
+from mpl_toolkits.mplot3d import Axes3D
+from matplotlib import cbook
+from matplotlib import cm
+from matplotlib.colors import LightSource
 import matplotlib.pyplot as plt
 import numpy as np
 
-from mpl_toolkits.mplot3d import Axes3D
-from matplotlib.cm import inferno as colormap
-from matplotlib.colors import LogNorm
+filename = cbook.get_sample_data('jacksboro_fault_dem.npz', asfileobj=False)
+with np.load(filename) as dem:
+    z = dem['elevation']
+    nrows, ncols = z.shape
+    x = np.linspace(dem['xmin'], dem['xmax'], ncols)
+    y = np.linspace(dem['ymin'], dem['ymax'], nrows)
+    x, y = np.meshgrid(x, y)
 
-fig = plt.figure()
-fig.clf()
-ax = Axes3D(fig, azim=-128.0, elev=43.0)
+region = np.s_[5:50, 5:50]
+x, y, z = x[region], y[region], z[region]
 
-s = 0.05
-x = np.arange(-2.0, 2.0 + s, s)
-y = np.arange(-1.0, 3.0 + s, s)
-X, Y = np.meshgrid(x, y)
-Z = (1.0 - X)**2 + 100.0 * (Y - X*X)**2
+fig, ax = plt.subplots(subplot_kw=dict(projection='3d'))
 
-# Without using `` linewidth=0, edgecolor='none' '', the code may produce a
-# graph with wide black edges, which will make the surface look much darker.
-ax.plot_surface(X, Y, Z, rstride=1, cstride=1, norm=LogNorm(),
-                cmap=colormap, linewidth=0, edgecolor='none')
-
-ax.set_xlim([-2, 2])
-ax.set_ylim([-1, 3])
-ax.set_zlim([0, 2500])
-
-ax.set_xlabel("x")
-ax.set_ylabel("y")
-
-fig.savefig("Rosenbrock function.svg")
-plt.show()
+ls = LightSource(270, 45)
+# To use a custom hillshading mode, override the built-in shading and pass
+# in the rgb colors of the shaded surface calculated from "shade".
+rgb = ls.shade(z, cmap=cm.gist_earth, vert_exag=0.1, blend_mode='soft')
+surf = ax.plot_surface(x, y, z, rstride=1, cstride=1, facecolors=rgb,
+                       linewidth=0, antialiased=False, shade=False)
+ax.set_xticks([])
+ax.set_yticks([])
+ax.set_zticks([])
+fig.savefig("surface3d_frontpage.png", dpi=25)  # results in 160x120 px image

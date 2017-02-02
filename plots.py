@@ -521,6 +521,18 @@ def simple_3d_animation():
 	ax.set_zlabel("Z")
 	line_ani=animation.FuncAnimation(fig,update_lines,25,fargs=(data,lines),interval=50,blit=False)
 	plt.show()
+
+def random_data_animation():
+	fig,ax=plt.subplots()
+	line,=ax.plot(np.random.rand(10))
+	ax.set_ylim(0,1)
+	def update(data):
+		line.set_ydata(data)
+		return line,
+	def data_gen():
+		while True: yield np.random.rand(10)
+	ani = animation.FuncAnimation(fig,update,data_gen,interval=100)
+	plt.show()
 	
 
 #another_graphic()		
@@ -548,4 +560,5 @@ def simple_3d_animation():
 #rgb_cube()
 #rosenbrock_function()
 #basic_animation()
-simple_3d_animation()
+#simple_3d_animation()
+random_data_animation()
