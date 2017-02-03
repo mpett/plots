@@ -10,6 +10,7 @@ from matplotlib.cm import inferno as colormap
 from matplotlib.colors import LogNorm
 from scipy.integrate import odeint
 import numpy as np
+import matplotlib as mpl
 import matplotlib.pyplot as plt
 import matplotlib.tri as tri
 import matplotlib.cm as cm
@@ -534,7 +535,20 @@ def random_data_animation():
 	ani = animation.FuncAnimation(fig,update,data_gen,interval=100)
 	plt.show()
 	
-
+def lines3d():
+	mpl.rcParams['legend.fontsize']=10
+	fig=plt.figure()
+	ax=fig.gca(projection='3d')
+	theta=np.linspace(-4*np.pi,4*np.pi,100)
+	z=np.linspace(-2,2,100)
+	r=z**2+1
+	x=r*np.sin(theta)
+	y=r*np.cos(theta)
+	ax.plot(x,y,z,label='parametric curve')
+	ax.legend()
+	plt.show()
+	
+lines3d()
 #another_graphic()		
 #mandelbrot_main()
 #step_lorenz()
@@ -561,4 +575,4 @@ def random_data_animation():
 #rosenbrock_function()
 #basic_animation()
 #simple_3d_animation()
-random_data_animation()
+#random_data_animation()
