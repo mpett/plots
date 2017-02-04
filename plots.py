@@ -548,7 +548,7 @@ def lines3d():
 	ax.legend()
 	plt.show()
 	
-lines3d()
+#lines3d()
 #another_graphic()		
 #mandelbrot_main()
 #step_lorenz()
