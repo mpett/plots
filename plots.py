@@ -8,6 +8,9 @@ from matplotlib import colors
 from matplotlib.animation import FuncAnimation
 from matplotlib.colors import LogNorm
 from scipy.integrate import odeint
+from math import sqrt
+from scipy.stats import norm
+from pylab import plot,show,grid,xlabel,ylabel
 import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
@@ -546,7 +549,34 @@ def lines3d():
 	ax.plot(x,y,z,label='parametric curve')
 	ax.legend()
 	plt.show()
-	
+
+def brownian_motion():
+	def brownian(x0,n,dt,delta,out=None):
+		x0=np.asarray(x0)
+		r=norm.rvs(size=x0.shape+(n,),scale=delta*sqrt(dt))
+		if out is None:
+			out=np.empty(r.shape)
+		np.cumsum(r,axis=-1,out=out)
+		out+=np.expand_dims(x0,axis=-1)
+		return out
+	import numpy
+	delta=2
+	T=10.0
+	N=500
+	dt=T/N
+	m=20
+	x=numpy.empty((m,N+1))
+	x[:,0]=50
+	brownian(x[:,0],N,dt,delta,out=x[:,1:])
+	t=numpy.linspace(0.0,N*dt,N+1)
+	for k in range(m):
+		plot(t,x[k])
+	xlabel('t',fontsize=16)
+	ylabel('x',fontsize=16)
+	grid(True)
+	show()
+
+#brownian_motion()
 #lines3d()
 #another_graphic()		
 #mandelbrot_main()
