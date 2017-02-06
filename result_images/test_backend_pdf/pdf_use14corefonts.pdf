@@ -1,0 +1,212 @@
+%PDF-1.4
+%¬Ü «º
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+8 0 obj
+<< /XObject 7 0 R /Pattern 5 0 R
+/ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ] /ExtGState 4 0 R
+/Shading 6 0 R /Font 3 0 R >>
+endobj
+10 0 obj
+<< /Group << /CS /DeviceRGB /S /Transparency /Type /Group >> /Parent 2 0 R
+/MediaBox [ 0 0 576 432 ] /Resources 8 0 R /Type /Page /Contents 9 0 R >>
+endobj
+9 0 obj
+<< /Length 11 0 R >>
+stream
+1 j
+1 g 0 w 1 G
+0 0 m 576 0 l 576 432 l 0 432 l h
+f
+/A1 gs 0 G
+72 43.2 m 518.4 43.2 l 518.4 388.8 l 72 388.8 l h
+f
+q 72 43.2 446.4 345.6 re W n /A2 gs 2 J 0.5 w 0 0 1 RG
+72 216 m 518.4 216 l
+S
+Q q /A2 gs 0 g 0.5 w 0 G
+72 43.2 m 72 47.2 l
+B
+72 388.8 m 72 384.8 l
+B
+/A2 gs 1 w
+BT /F1 8 Tf
+66.44 33.456 Td
+(0.0) Tj ET
+/A2 gs 0.5 w
+161.28 43.2 m 161.28 47.2 l
+B
+161.28 388.8 m 161.28 384.8 l
+B
+/A2 gs 1 w
+BT /F1 8 Tf
+155.72 33.456 Td
+(0.2) Tj ET
+/A2 gs 0.5 w
+250.56 43.2 m 250.56 47.2 l
+B
+250.56 388.8 m 250.56 384.8 l
+B
+/A2 gs 1 w
+BT /F1 8 Tf
+245 33.456 Td
+(0.4) Tj ET
+/A2 gs 0.5 w
+339.84 43.2 m 339.84 47.2 l
+B
+339.84 388.8 m 339.84 384.8 l
+B
+/A2 gs 1 w
+BT /F1 8 Tf
+334.28 33.456 Td
+(0.6) Tj ET
+/A2 gs 0.5 w
+429.12 43.2 m 429.12 47.2 l
+B
+429.12 388.8 m 429.12 384.8 l
+B
+/A2 gs 1 w
+BT /F1 8 Tf
+423.56 33.456 Td
+(0.8) Tj ET
+/A2 gs 0.5 w
+518.4 43.2 m 518.4 47.2 l
+B
+518.4 388.8 m 518.4 384.8 l
+B
+/A2 gs 1 w
+BT /F1 8 Tf
+512.84 33.456 Td
+(1.0) Tj ET
+/A2 gs 0.5 w
+72 43.2 m 76 43.2 l
+B
+518.4 43.2 m 514.4 43.2 l
+B
+/A2 gs 1 w
+BT /F1 8 Tf
+56.88 41.156 Td
+(0.0) Tj ET
+/A2 gs 0.5 w
+72 112.32 m 76 112.32 l
+B
+518.4 112.32 m 514.4 112.32 l
+B
+/A2 gs 1 w
+BT /F1 8 Tf
+56.88 110.276 Td
+(0.2) Tj ET
+/A2 gs 0.5 w
+72 181.44 m 76 181.44 l
+B
+518.4 181.44 m 514.4 181.44 l
+B
+/A2 gs 1 w
+BT /F1 8 Tf
+56.88 179.396 Td
+(0.4) Tj ET
+/A2 gs 0.5 w
+72 250.56 m 76 250.56 l
+B
+518.4 250.56 m 514.4 250.56 l
+B
+/A2 gs 1 w
+BT /F1 8 Tf
+56.88 248.516 Td
+(0.6) Tj ET
+/A2 gs 0.5 w
+72 319.68 m 76 319.68 l
+B
+518.4 319.68 m 514.4 319.68 l
+B
+/A2 gs 1 w
+BT /F1 8 Tf
+56.88 317.636 Td
+(0.8) Tj ET
+/A2 gs 0.5 w
+72 388.8 m 76 388.8 l
+B
+518.4 388.8 m 514.4 388.8 l
+B
+/A2 gs 1 w
+BT /F1 8 Tf
+56.88 386.756 Td
+(1.0) Tj ET
+72 388.8 m 518.4 388.8 l
+S
+518.4 43.2 m 518.4 388.8 l
+S
+72 43.2 m 518.4 43.2 l
+S
+72 43.2 m 72 388.8 l
+S
+0 g
+BT /F1 24 Tf
+38.148 285.9792 Td
+(A three-line text positioned just above a blue line) Tj ET
+BT /F1 24 Tf
+-43.632 260.2608 Td
+(    and containing some French characters and the euro symbol:) Tj ET
+BT /F1 24 Tf
+141.276 220.968 Td
+(    "Merci pépé pour les 10 €") Tj ET
+BT /F1 9.6 Tf
+185.7648 393.8 Td
+(Test PDF backend with option use14corefonts=True) Tj ET
+Q
+
+endstream
+endobj
+11 0 obj
+2134
+endobj
+12 0 obj
+<< /BaseFont /Helvetica /Subtype /Type1 /Type /Font
+/Encoding /WinAnsiEncoding >>
+endobj
+3 0 obj
+<< /F1 12 0 R >>
+endobj
+4 0 obj
+<< /A1 << /CA 0 /Type /ExtGState /ca 1 >>
+/A2 << /CA 1 /Type /ExtGState /ca 1 >> >>
+endobj
+5 0 obj
+<< >>
+endobj
+6 0 obj
+<< >>
+endobj
+7 0 obj
+<< >>
+endobj
+2 0 obj
+<< /Count 1 /Kids [ 10 0 R ] /Type /Pages >>
+endobj
+13 0 obj
+<< /CreationDate (D:20170206181102+02'00')
+/Producer (matplotlib pdf backend)
+/Creator (matplotlib 1.3.1, http://matplotlib.org) >>
+endobj
+xref
+0 14
+0000000000 65535 f 
+0000000016 00000 n 
+0000002874 00000 n 
+0000002680 00000 n 
+0000002712 00000 n 
+0000002811 00000 n 
+0000002832 00000 n 
+0000002853 00000 n 
+0000000065 00000 n 
+0000000373 00000 n 
+0000000208 00000 n 
+0000002561 00000 n 
+0000002582 00000 n 
+0000002934 00000 n 
+trailer
+<< /Info 13 0 R /Root 1 0 R /Size 14 >>
+startxref
+3082
+%%EOF

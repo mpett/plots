@@ -6,7 +6,6 @@ from matplotlib import cm
 from matplotlib.colors import LightSource,Normalize
 from matplotlib import colors
 from matplotlib.animation import FuncAnimation
-from matplotlib.cm import inferno as colormap
 from matplotlib.colors import LogNorm
 from scipy.integrate import odeint
 import numpy as np
