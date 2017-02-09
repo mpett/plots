@@ -580,7 +580,7 @@ def brownian_motion():
 #lines3d()
 #another_graphic()		
 #mandelbrot_main()
-#step_lorenz()
+step_lorenz()
 #simple_animation()
 #surface()
 #rotate()
