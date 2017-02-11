@@ -53,7 +53,23 @@ def lorenz_attractor():
 	ax.set_zlabel("Z axis")
 	plt.show()
 
+def interpolation_b_splines():
+	from numpy import r_,sin,cos
+	from scipy.signal import cspline1d,cspline1d_eval
+	#%pylab inline
+	x=r_[0:10]
+	dx=x[1]-x[0]
+	newx=r_[-3:13:0.1]
+	y=cos(x)
+	cj=cspline1d(y)
+	newy=cspline1d_eval(cj,newx,dx=dx,x0=x[0])
+	from pylab import plot,show
+	plot(newx,newy,x,y,'o')
+	show()
+	
+
 def main():
 	#pulsar()
-	lorenz_attractor()
+	#lorenz_attractor()
+	interpolation_b_splines()
 main()
