@@ -1,3 +1,5 @@
+from numpy import *
+
 def pulsar():
 	import numpy as np
 	import matplotlib.pyplot as plt
@@ -67,9 +69,22 @@ def interpolation_b_splines():
 	plot(newx,newy,x,y,'o')
 	show()
 	
-
+def wireframe():
+	import pylab as p
+	import mpl_toolkits.mplot3d.axes3d as p3
+	u=r_[0:2*pi:100j]
+	v=r_[0:pi:100j]
+	x=10*outer(cos(u),sin(v))
+	y=10*outer(sin(u),sin(v))
+	z=10*outer(ones(size(u)),cos(v))
+	fig=p.figure()
+	ax=p3.Axes3D(fig)
+	ax.plot_wireframe(x,y,z)
+	p.show()	
+		
 def main():
 	#pulsar()
 	#lorenz_attractor()
-	interpolation_b_splines()
+	#interpolation_b_splines()
+	wireframe()
 main()
