@@ -1,4 +1,5 @@
 from numpy import *
+from pylab import *
 
 def pulsar():
 	import numpy as np
@@ -106,6 +107,15 @@ def mandelbrot():
 			ix,iy=ix[rem],iy[rem]
 			c=c[rem]
 		return img
+	import time
+	start=time.time()
+	I=mandel(400,400,100,-2,.5,-1.25,1.25)
+	print 'Time taken: ',time.time()-start
+	I[I==0]=101
+	img=imshow(I.T,origin='lower left')
+	img.write_png('mandel.png',noscale=True)
+	show()
+	
 		
 def main():
 #	pulsar()
