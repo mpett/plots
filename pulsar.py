@@ -93,6 +93,10 @@ def wireframe():
 	fig=p.figure()
 	ax=p3.Axes3D(fig)
 	ax.scatter3D(ravel(x),ravel(y),ravel(z))
+	p.show()
+	fig=p.figure()
+	ax=p3.Axes3D(fig)
+	ax.plot_surface(x,y,z)
 	p.show()	
 
 def mandelbrot():
