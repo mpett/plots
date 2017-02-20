@@ -81,6 +81,14 @@ def wireframe():
 	fig=p.figure()
 	ax=p3.Axes3D(fig)
 	ax.plot_wireframe(x,y,z)
+	p.show()
+	fig = p.figure()
+	ax=p3.Axes3D(fig)
+	ax.plot3D(ravel(x),ravel(y),ravel(z))
+	ax.set_xlabel('X')
+	ax.set_ylabel('Y')
+	ax.set_zlabel('Z')
+	fig.add_axes(ax)
 	p.show()	
 
 def mandelbrot():
@@ -153,8 +161,8 @@ def main():
 #	pulsar()
 	#lorenz_attractor()
 	#interpolation_b_splines()
-#	wireframe()
+	wireframe()
 #	mandelbrot()
-	fitting_data()
+	#fitting_data()
 	
 main()
