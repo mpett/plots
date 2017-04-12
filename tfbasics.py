@@ -10,7 +10,14 @@ def multiplication_basics():
 		print("%f should equal 9.0" % sess.run(y,feed_dict={a:3,b:3}))
 
 
+def hello_world():
+	hello=tf.constant("Hello,Tensorflow!")
+	sess=tf.Session()
+	print(sess.run(hello))
+
+
 def main():
 	multiplication_basics()
+	hello_world()
 
 main()
