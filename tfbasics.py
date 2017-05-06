@@ -130,7 +130,7 @@ def multilayer_perceptron():
 	from tensorflow.examples.tutorials.mnist import input_data
 	mnist=input_data.read_data_sets("/tmp/data/",one_hot=True)
 	learning_rate=0.001
-	training_epochs=15
+	training_epochs=150
 	batch_size=100
 	display_step=1
 	n_hidden_1=256
@@ -178,14 +178,34 @@ def multilayer_perceptron():
 		correct_prediction=tf.equal(tf.argmax(pred,1),tf.argmax(y,1))
 		accuracy=tf.reduce_mean(tf.cast(correct_prediction,"float"))
 		print("Accuracy:",accuracy.eval({x:mnist.test.images,y:mnist.test.labels}))
+
+def convolutional_network():
+	from tensorflow.examples.tutorials.mnist import input_data
+	mnist=input_data.read_data_sets("tmp/data/",one_hot=True)
+	learning_rate=0.001
+	training_iters=200000
+	batch_size=128
+	display_step=10
+	n_input=784
+	n_classes=10
+	dropout=0.75
+	x=tf.placeholder(tf.float32,[None,n_input])
+	y=tf.placeholder(tf.float32,[None,n_classes])
+	keep_prob=tf.placeholder(tf.float32)
+	
+	def conv2d(x,W,b,strides=1):
+		x=tf.nn.conv2d(x,W,strides=[1,strides,strides,1],padding='SAME')
+		x=tf.nn.bias_add(x,b)
+		return tf.nn.relu(x)
+		
 		
 def main():
-#	multiplication_basics()
-#	hello_world()
-#	matrix_multiplication()
-#	nearest_neighbor()
-#	linear_regression()
-#	logistic_regression()
+	multiplication_basics()
+	hello_world()
+	matrix_multiplication()
+	nearest_neighbor()
+	logistic_regression()
 	multilayer_perceptron()
+	linear_regression()
 
 main()
