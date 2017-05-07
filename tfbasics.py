@@ -203,9 +203,9 @@ def convolutional_network():
 
 	def conv_net(x,weights,biases,dropout):
 		x=tf.reshape(x,shape=[-1,28,28,1])
-		conv1=conv2(x,weights['wc1'],biases['bc1'])
+		conv1=conv2d(x,weights['wc1'],biases['bc1'])
 		conv1=maxpool2d(conv1,k=2)
-		conv2=conv2d(conv1,weights['wc1'],biases['bc2'])
+		conv2=conv2d(conv1,weights['wc2'],biases['bc2'])
 		conv2=maxpool2d(conv2,k=2)
 		fc1=tf.reshape(conv2,[-1,weights['wd1'].get_shape().as_list()[0]])
 		fc1=tf.add(tf.matmul(fc1,weights['wd1']),biases['bd1'])
@@ -214,16 +214,49 @@ def convolutional_network():
 		out=tf.add(tf.matmul(fc1,weights['out']),biases['out'])
 		return out
 
-	
-		
+	weights = {
+	    'wc1': tf.Variable(tf.random_normal([5, 5, 1, 32])),
+	    'wc2': tf.Variable(tf.random_normal([5, 5, 32, 64])),
+	    'wd1': tf.Variable(tf.random_normal([7*7*64, 1024])),
+	    'out': tf.Variable(tf.random_normal([1024, n_classes]))
+	}
+
+	biases = {
+		'bc1':tf.Variable(tf.random_normal([32])),
+		'bc2':tf.Variable(tf.random_normal([64])),
+		'bd1':tf.Variable(tf.random_normal([1024])),
+		'out':tf.Variable(tf.random_normal([n_classes]))
+	}
+
+	pred=conv_net(x,weights,biases,keep_prob)
+	cost=tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=pred,labels=y))
+	optimizer=tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(cost)
+	correct_pred=tf.equal(tf.argmax(pred,1),tf.argmax(y,1))
+	accuracy=tf.reduce_mean(tf.cast(correct_pred,tf.float32))
+	init=tf.global_variables_initializer()
+	with tf.Session() as sess:
+		sess.run(init)
+		step=1
+		while step * batch_size < training_iters:
+			batch_x,batch_y=mnist.train.next_batch(batch_size)
+			sess.run(optimizer,feed_dict={x:batch_x,y:batch_y,keep_prob:dropout})
+			if step % display_step == 0:
+				loss,acc=sess.run([cost,accuracy],feed_dict={x:batch_x,y:batch_y,keep_prob:.1})
+				print("Iter "+str(step*batch_size)+", Minibatch Loss= " + "{:.6f}".format(loss) + ", Training Accuracy=" + \
+					"{:.5f}".format(acc))
+			step+=1
+		print("Optimization Finished")
+		print("Testing Accuracy", \
+			sess.run(accuracy,feed_dict={x:mnist.test.images[:256],y:mnist.test.labels[:256],keep_prob:1.}))
 		
 def main():
-	multiplication_basics()
-	hello_world()
-	matrix_multiplication()
-	nearest_neighbor()
-	logistic_regression()
-	multilayer_perceptron()
-	linear_regression()
+#	multiplication_basics()
+#	hello_world()
+#	matrix_multiplication()
+#	nearest_neighbor()
+#	logistic_regression()
+#	multilayer_perceptron()
+#	linear_regression()
+	convolutional_network()
 
 main()
