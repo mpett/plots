@@ -130,7 +130,7 @@ def multilayer_perceptron():
 	from tensorflow.examples.tutorials.mnist import input_data
 	mnist=input_data.read_data_sets("/tmp/data/",one_hot=True)
 	learning_rate=0.001
-	training_epochs=150
+	training_epochs=15
 	batch_size=100
 	display_step=1
 	n_hidden_1=256
@@ -250,13 +250,13 @@ def convolutional_network():
 			sess.run(accuracy,feed_dict={x:mnist.test.images[:256],y:mnist.test.labels[:256],keep_prob:1.}))
 		
 def main():
-#	multiplication_basics()
-#	hello_world()
-#	matrix_multiplication()
-#	nearest_neighbor()
+	multiplication_basics()
+	hello_world()
+	matrix_multiplication()
+	nearest_neighbor()
 #	logistic_regression()
 #	multilayer_perceptron()
-#	linear_regression()
+	linear_regression()
 	convolutional_network()
 
 main()
