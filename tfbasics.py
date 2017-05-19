@@ -248,15 +248,24 @@ def convolutional_network():
 		print("Optimization Finished")
 		print("Testing Accuracy", \
 			sess.run(accuracy,feed_dict={x:mnist.test.images[:256],y:mnist.test.labels[:256],keep_prob:1.}))
+
+
+def second_convnet():
+	import random
+	import numpy as np
+	import matplotlib.pyplot as plt
+	import datetime
+	
 		
 def main():
-	multiplication_basics()
-	hello_world()
-	matrix_multiplication()
-	nearest_neighbor()
+#	multiplication_basics()
+#	hello_world()
+#	matrix_multiplication()
+#	nearest_neighbor()
 #	logistic_regression()
 #	multilayer_perceptron()
-	linear_regression()
-	convolutional_network()
+#	linear_regression()
+#	convolutional_network()
+	second_convnet()
 
 main()
