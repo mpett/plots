@@ -257,6 +257,10 @@ def second_convnet():
 	import datetime
 	from tensorflow.examples.tutorials.mnist import input_data
 	mnist=input_data.read_data_sets("MNIST_data/",one_hot=True)
+	tf.reset_default_graph()
+	sess=tf.InteractiveSession()
+	x=tf.placeholder("float",shape=[None,28,28,1])
+	y=tf.placeholder("float",shape=[None,10])
 	
 		
 def main():
