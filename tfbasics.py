@@ -263,6 +263,11 @@ def second_convnet():
 	y=tf.placeholder("float",shape=[None,10])
 	W_conv1=tf.Variable(tf.truncated_normal([5,5,1,32],stddev=0.1))
 	b_conv1=tf.Variable(tf.constant(.1,shape=[32]))
+	print(x)
+	print(W_conv1)	
+	h_conv1=tf.nn.conv2d(input=x,filter=W_conv1,strides=[1,1,1,1],padding='SAME')+b_conv1
+	h_conv1=tf.nn.relu(h_conv1)
+	h_pool1=tf.nn.max_pool(h_conv1,ksize=[1,2,2,1],strides=[1,2,2,1],padding='SAME')
 	
 		
 def main():
