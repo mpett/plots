@@ -261,6 +261,8 @@ def second_convnet():
 	sess=tf.InteractiveSession()
 	x=tf.placeholder("float",shape=[None,28,28,1])
 	y=tf.placeholder("float",shape=[None,10])
+	W_conv1=tf.Variable(tf.truncated_normal([5,5,1,32],stddev=0.1))
+	b_conv1=tf.Variable(tf.constant(.1,shape=[32]))
 	
 		
 def main():
