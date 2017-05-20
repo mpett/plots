@@ -268,6 +268,12 @@ def second_convnet():
 	h_conv1=tf.nn.conv2d(input=x,filter=W_conv1,strides=[1,1,1,1],padding='SAME')+b_conv1
 	h_conv1=tf.nn.relu(h_conv1)
 	h_pool1=tf.nn.max_pool(h_conv1,ksize=[1,2,2,1],strides=[1,2,2,1],padding='SAME')
+
+	def conv2d(x,W):
+		return tf.nn.conv2d(input=x,filter=W,strides=[1,1,1,1],padding='SAME')
+
+	def max_pool_2x2(x):
+		return tf.nn.max_pool(x,ksize=[1,2,2,1],strides=[1,2,2,1],padding='SAME')
 	
 		
 def main():
