@@ -274,6 +274,11 @@ def second_convnet():
 
 	def max_pool_2x2(x):
 		return tf.nn.max_pool(x,ksize=[1,2,2,1],strides=[1,2,2,1],padding='SAME')
+
+	W_conv2=tf.Variable(tf.truncated_normal([5,5,32,64],stddev=0.1))
+	b_conv2=tf.Variable(tf.constant(.1,shape=[64]))
+	h_conv2=tf.nn.relu(conv2d(h_pool1,W_conv2)+b_conv2)
+	h_pool2=max_pool_2x2(h_conv2)
 	
 		
 def main():
