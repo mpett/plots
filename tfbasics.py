@@ -285,6 +285,9 @@ def second_convnet():
 	h_fcl=tf.nn.relu(tf.matmul(h_pool2_flat,W_fcl)+b_fcl)
 	keep_prob=tf.placeholder("float")
 	h_fcl_drop=tf.nn.dropout(h_fcl,keep_prob)
+	W_fc2=tf.Variable(tf.truncated_normal([1024,10],stddev=0.1))
+	b_fc2=tf.Variable(tf.constant(.1,shape=[10]))
+	y=tf.matmul(h_fcl_drop,W_fc2)+b_fc2
 	
 		
 def main():
