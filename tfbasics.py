@@ -260,7 +260,7 @@ def second_convnet():
 	tf.reset_default_graph()
 	sess=tf.InteractiveSession()
 	x=tf.placeholder("float",shape=[None,28,28,1])
-	y=tf.placeholder("float",shape=[None,10])
+	y_=tf.placeholder("float",shape=[None,10])
 	W_conv1=tf.Variable(tf.truncated_normal([5,5,1,32],stddev=0.1))
 	b_conv1=tf.Variable(tf.constant(.1,shape=[32]))
 	print(x)
@@ -288,6 +288,7 @@ def second_convnet():
 	W_fc2=tf.Variable(tf.truncated_normal([1024,10],stddev=0.1))
 	b_fc2=tf.Variable(tf.constant(.1,shape=[10]))
 	y=tf.matmul(h_fcl_drop,W_fc2)+b_fc2
+	crossEntropyLoss=tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=y_,logits=y))
 	
 		
 def main():
