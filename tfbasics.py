@@ -307,6 +307,7 @@ def second_convnet():
 	plt.imshow(my_i,cmap='gray_r')
 	plt.show()
 	batchSize=50
+
 	for i in range(1000):
 		batch=mnist.train.next_batch(batchSize)
 		trainingInputs=batch[0].reshape([batchSize,28,28,1])
@@ -318,18 +319,22 @@ def second_convnet():
 			trainAccuracy=accuracy.eval(session=sess,feed_dict={x:trainingInputs,y_:trainingLabels,keep_prob:1.0})
 			print("step %d, training accuracy %g"%(i,trainAccuracy))
 		trainStep.run(session=sess,feed_dict={x:trainingInputs,y_:trainingLabels,keep_prob:0.5})
-	
-	
+
+	testInputs=mnist.test.images.reshape([-1,28,28,1])
+	testLabels=mnist.test.labels
+	acc=accuracy.eval(feed_dict={x:testInputs,y_:testLabels,keep_prob:1.0})
+	print("test accuracy: {}".format(acc))
 		
 def main():
-#	multiplication_basics()
-#	hello_world()
-#	matrix_multiplication()
-#	nearest_neighbor()
-#	logistic_regression()
-#	multilayer_perceptron()
-#	linear_regression()
-#	convolutional_network()
+	multiplication_basics()
+	hello_world()
+	matrix_multiplication()
+	nearest_neighbor()
+	logistic_regression()
+	multilayer_perceptron()
+	linear_regression()
+	convolutional_network()
 	second_convnet()
 
 main()
+
