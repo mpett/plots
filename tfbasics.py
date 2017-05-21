@@ -293,6 +293,20 @@ def second_convnet():
 	correct_prediction=tf.equal(tf.argmax(y,1),tf.argmax(y_,1))
 	accuracy=tf.reduce_mean(tf.cast(correct_prediction,"float"))
 	sess.run(tf.global_variables_initializer())
+	tf.summary.scalar('Cross Entropy Loss',crossEntropyLoss)
+	tf.summary.scalar('Accuracy',accuracy)
+	merged=tf.summary.merge_all()
+	logdir="tensorboard/"+datetime.datetime.now().strftime("%Y%m%d-%H%M%S")+"/"
+	writer=tf.summary.FileWriter(logdir,sess.graph)
+	b=mnist.train.next_batch(1)
+	print(b[0].shape)
+	image=tf.reshape(b[0],[-1,28,28,1])
+	print(image)
+	my_img=image.eval()
+	my_i=my_img.squeeze()
+	plt.imshow(my_i,cmap='gray_r')
+	plt.show()
+	
 	
 		
 def main():
