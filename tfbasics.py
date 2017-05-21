@@ -290,6 +290,8 @@ def second_convnet():
 	y=tf.matmul(h_fcl_drop,W_fc2)+b_fc2
 	crossEntropyLoss=tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=y_,logits=y))
 	trainStep=tf.train.AdamOptimizer().minimize(crossEntropyLoss)
+	correct_prediction=tf.equal(tf.argmax(y,1),tf.argmax(y_,1))
+	accuracy=tf.reduce_mean(tf.cast(correct_prediction,"float"))
 	
 		
 def main():
