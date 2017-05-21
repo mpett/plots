@@ -306,6 +306,18 @@ def second_convnet():
 	my_i=my_img.squeeze()
 	plt.imshow(my_i,cmap='gray_r')
 	plt.show()
+	batchSize=50
+	for i in range(1000):
+		batch=mnist.train.next_batch(batchSize)
+		trainingInputs=batch[0].reshape([batchSize,28,28,1])
+		trainingLabels=batch[1]
+		if i%10==0:
+			summary=sess.run(merged,{x:trainingInputs,y_:trainingLabels,keep_prob:1.0})
+			writer.add_summary(summary,i)
+		if i%100==0:
+			trainAccuracy=accuracy.eval(session=sess,feed_dict={x:trainingInputs,y_:trainingLabels,keep_prob:1.0})
+			print("step %d, training accuracy %g"%(i,trainAccuracy))
+		trainStep.run(session=sess,feed_dict={x:trainingInputs,y_:trainingLabels,keep_prob:0.5})
 	
 	
 		
