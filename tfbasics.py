@@ -289,6 +289,7 @@ def second_convnet():
 	b_fc2=tf.Variable(tf.constant(.1,shape=[10]))
 	y=tf.matmul(h_fcl_drop,W_fc2)+b_fc2
 	crossEntropyLoss=tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=y_,logits=y))
+	trainStep=tf.train.AdamOptimizer().minimize(crossEntropyLoss)
 	
 		
 def main():
