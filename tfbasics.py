@@ -324,17 +324,43 @@ def second_convnet():
 	testLabels=mnist.test.labels
 	acc=accuracy.eval(feed_dict={x:testInputs,y_:testLabels,keep_prob:1.0})
 	print("test accuracy: {}".format(acc))
+
+def recurrent_neural_network_for_spam_detection():
+	import sys
+	reload(sys)  
+	sys.setdefaultencoding('utf8')
+	import os
+	import re
+	import io
+	import requests
+	import numpy as np
+	import matplotlib.pyplot as plt
+	from zipfile import ZipFile
+	from tensorflow.python.framework import ops
+	ops.reset_default_graph()
+	sess = tf.Session()
+	epochs=20
+	batch_size=250
+	max_sequence_length=25
+	rnn_size=10
+	embedding_size=50
+	min_word_frequency=10
+	learning_rate=0.0005
+	dropout_keep_prob=tf.placeholder(tf.float32)
+	data_dir='temp'
+	
 		
 def main():
-	multiplication_basics()
-	hello_world()
-	matrix_multiplication()
-	nearest_neighbor()
-	logistic_regression()
-	multilayer_perceptron()
-	linear_regression()
-	convolutional_network()
-	second_convnet()
+#	multiplication_basics()
+#	hello_world()
+#	matrix_multiplication()
+#	nearest_neighbor()
+#	logistic_regression()
+#	multilayer_perceptron()
+#	linear_regression()
+#	convolutional_network()
+#	second_convnet()
+	recurrent_neural_network_for_spam_detection()
 
 main()
 
