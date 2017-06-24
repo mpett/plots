@@ -371,6 +371,14 @@ def modern_multilayer_perceptron():
 	nTest=X_test.shape[0]
 	print("Shape of (X_train, X_test, Y_train, Y_test)")
 	print(X_train.shape, X_test.shape,Y_train.shape,Y_test.shape)
+	
+	def xavier_init(n_inputs,n_outputs,uniform=True):
+		if uniform:
+			init_range=tf.sqrt(6.0/(n_inputs+n_outputs))
+			return tf.random_uniform_initializer(-init_range,init_range)
+		else:
+			stddev=tf.sqrt(3.0,(n_inputs+n_outputs))
+		return tf.truncated_normal_initializer(stddev=stddev)
 		
 def main():
 #	multiplication_basics()
