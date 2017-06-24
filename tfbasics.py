@@ -348,7 +348,18 @@ def recurrent_neural_network_for_spam_detection():
 	learning_rate=0.0005
 	dropout_keep_prob=tf.placeholder(tf.float32)
 	data_dir='temp'
-	
+
+def gaussian_mixture_models():
+	import numpy as np
+	import matplotlib.pyplot as plt
+	from scipy import stats
+	import seaborn as sns; sns.set()
+
+def modern_multilayer_perceptron():
+	import numpy as np
+	import tensorflow as tf
+	import matplotlib.pyplot as plt
+	from tensorflow.examples.tutorials.mnist import input_data
 		
 def main():
 #	multiplication_basics()
@@ -360,7 +371,10 @@ def main():
 #	linear_regression()
 #	convolutional_network()
 #	second_convnet()
-	recurrent_neural_network_for_spam_detection()
+#	recurrent_neural_network_for_spam_detection()
+#	gaussian_mixture_models()
+	modern_multilayer_perceptron()
+	
 
 main()
 
