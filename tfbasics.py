@@ -365,6 +365,12 @@ def modern_multilayer_perceptron():
 	Y_train=mnist.train.labels
 	X_test=mnist.test.images
 	Y_test=mnist.test.labels
+	dimX=X_train.shape[1]
+	dimY=Y_train.shape[1]
+	nTrain=X_train.shape[0]
+	nTest=X_test.shape[0]
+	print("Shape of (X_train, X_test, Y_train, Y_test)")
+	print(X_train.shape, X_test.shape,Y_train.shape,Y_test.shape)
 		
 def main():
 #	multiplication_basics()
