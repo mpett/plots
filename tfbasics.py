@@ -360,6 +360,11 @@ def modern_multilayer_perceptron():
 	import tensorflow as tf
 	import matplotlib.pyplot as plt
 	from tensorflow.examples.tutorials.mnist import input_data
+	mnist=input_data.read_data_sets('data',one_hot=True)
+	X_train=mnist.train.images
+	Y_train=mnist.train.labels
+	X_test=mnist.test.images
+	Y_test=mnist.test.labels
 		
 def main():
 #	multiplication_basics()
