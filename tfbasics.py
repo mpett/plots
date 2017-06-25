@@ -379,6 +379,27 @@ def modern_multilayer_perceptron():
 		else:
 			stddev=tf.sqrt(3.0,(n_inputs+n_outputs))
 		return tf.truncated_normal_initializer(stddev=stddev)
+
+	nLayer0=dimX
+	nLayer1=256
+	nLayer2=256
+	nLayer3=dimY
+	sigma_init=0.1
+
+	W = {
+		'W1': tf.Variable(tf.random_normal([nLayer0,nLayer1],stddev=sigma_init)),
+		'W2': tf.Variable(tf.random_normal([nLayer1,nLayer2],stddev=sigma_init)),
+		'W3': tf.Variable(tf.random_normal([nLayer2,nLayer3],stddev=sigma_init))
+	    }
+
+	b = {
+		'b1': tf.Variable(tf.random_normal([nLayer1])),
+		'b3': tf.Variable(tf.random_normal([nLayer2])),
+		'b2': tf.Variable(tf.random_normal([nLayer3]))
+	    }
+
+
+		
 		
 def main():
 #	multiplication_basics()
