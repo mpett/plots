@@ -394,8 +394,8 @@ def modern_multilayer_perceptron():
 
 	b = {
 		'b1': tf.Variable(tf.random_normal([nLayer1])),
-		'b3': tf.Variable(tf.random_normal([nLayer2])),
-		'b2': tf.Variable(tf.random_normal([nLayer3]))
+		'b2': tf.Variable(tf.random_normal([nLayer2])),
+		'b3': tf.Variable(tf.random_normal([nLayer3]))
 	    }
 
 	def model_myNN(_X,_W,_b):
