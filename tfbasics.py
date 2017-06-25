@@ -398,6 +398,16 @@ def modern_multilayer_perceptron():
 		'b2': tf.Variable(tf.random_normal([nLayer3]))
 	    }
 
+	def model_myNN(_X,_W,_b):
+		Layer1=tf.nn.sigmoid(tf.add(tf.matmul(_X,_W['W1']),_b['b1']))
+		Layer2=tf.nn.sigmoid(tf.add(tf.matmul(Layer1,_W['W2']),_b['b2']))
+		Layer3=tf.add(tf.matmul(Layer2,_W['W3']),_b['b3'])
+		return Layer3
+
+	X=tf.placeholder(tf.float32,[None,dimX],name="input")
+	Y=tf.placeholder(tf.float32,[None,dimY],name="output")
+	Y_pred=model_myNN(X,W,b)
+
 
 		
 		
