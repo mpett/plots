@@ -408,7 +408,6 @@ def modern_multilayer_perceptron():
 	Y=tf.placeholder(tf.float32,[None,dimY],name="output")
 	Y_pred=model_myNN(X,W,b)
 	loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=Y_pred, labels=Y))	
-
 	learning_rate=0.001
 	optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(loss)
 	training_epochs=30
@@ -417,9 +416,6 @@ def modern_multilayer_perceptron():
 	correct_prediction = tf.equal(tf.argmax(Y_pred, 1), tf.argmax(Y, 1))
 	accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"))
 
-
-		
-		
 def main():
 #	multiplication_basics()
 #	hello_world()
@@ -434,6 +430,4 @@ def main():
 #	gaussian_mixture_models()
 	modern_multilayer_perceptron()
 	
-
 main()
-
