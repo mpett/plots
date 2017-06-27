@@ -428,6 +428,11 @@ def chi_squared_feature_selection():
 	X_dtm = vect.fit_transform(X)
 	X_dtm = X_dtm.toarray()
 	print(pd.DataFrame(X_dtm, columns = vect.get_feature_names()))
+	y_binarized = LabelBinarizer().fit_transform(y)
+	print(y_binarized)
+	print()
+	observed = np.dot(y_binarized.T, X_dtm)
+	print(observed)
 
 def main():
 	chi_squared_feature_selection()
