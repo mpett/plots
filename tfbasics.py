@@ -416,7 +416,21 @@ def modern_multilayer_perceptron():
 	correct_prediction = tf.equal(tf.argmax(Y_pred, 1), tf.argmax(Y, 1))
 	accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"))
 
+def chi_squared_feature_selection():
+	import numpy as np
+	import pandas as pd
+	from sklearn.preprocessing import LabelBinarizer
+	from sklearn.feature_selection import chi2, SelectKBest
+	from sklearn.feature_extraction.text import CountVectorizer
+	X = np.array(['call you tonight', 'Call me a cab', 'please call me... please', 'he will call me'])
+	y = [1,1,2,0]
+	vect = CountVectorizer()
+	X_dtm = vect.fit_transform(X)
+	X_dtm = X_dtm.toarray()
+	print(pd.DataFrame(X_dtm, columns = vect.get_feature_names()))
+
 def main():
+	chi_squared_feature_selection()
 #	multiplication_basics()
 #	hello_world()
 #	matrix_multiplication()
@@ -428,6 +442,6 @@ def main():
 #	second_convnet()
 #	recurrent_neural_network_for_spam_detection()
 #	gaussian_mixture_models()
-	modern_multilayer_perceptron()
+#	modern_multilayer_perceptron()
 	
 main()
