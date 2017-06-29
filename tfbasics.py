@@ -437,6 +437,9 @@ def chi_squared_feature_selection():
 	feature_count = X_dtm.sum(axis = 0).reshape(1, -1)
 	expected = np.dot(class_prob.T, feature_count)
 	print(expected)
+	chisq = (observed - expected) ** 2 / expected
+	chisq_score = chisq.sum(axis = 0)
+	print(chisq_score)
 
 def main():
 	chi_squared_feature_selection()
