@@ -440,6 +440,11 @@ def chi_squared_feature_selection():
 	chisq = (observed - expected) ** 2 / expected
 	chisq_score = chisq.sum(axis = 0)
 	print(chisq_score)
+	chi2score = chi2(X_dtm, y)
+	print(chi2score)
+	kbest = SelectKBest(score_func = chi2, k = 4)
+	X_dtm_kbest = kbest.fit_transform(X_dtm, y)
+	print(X_dtm_kbest)
 
 def main():
 	chi_squared_feature_selection()
