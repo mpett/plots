@@ -433,6 +433,10 @@ def chi_squared_feature_selection():
 	print()
 	observed = np.dot(y_binarized.T, X_dtm)
 	print(observed)
+	class_prob = y_binarized.mean(axis = 0).reshape(1, -1)
+	feature_count = X_dtm.sum(axis = 0).reshape(1, -1)
+	expected = np.dot(class_prob.T, feature_count)
+	print(expected)
 
 def main():
 	chi_squared_feature_selection()
