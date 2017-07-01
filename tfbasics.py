@@ -446,7 +446,13 @@ def chi_squared_feature_selection():
 	X_dtm_kbest = kbest.fit_transform(X_dtm, y)
 	print(X_dtm_kbest)
 
+def genetic():
+	import numpy as np
+	import pandas as np
+	import matplotlib.pyplot as plt
+
 def main():
+	genetic()
 	chi_squared_feature_selection()
 #	multiplication_basics()
 #	hello_world()
