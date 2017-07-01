@@ -455,6 +455,9 @@ def genetic():
 	high = 100
 	lol = np.random.randint(low, high + 1, chromo_size)
 	print(lol)
+	pop_size = 6
+	pop = np.random.randint(low, high + 1, (pop_size, chromo_size))
+	print(pop)
 
 def main():
 	genetic()
