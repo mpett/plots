@@ -448,12 +448,17 @@ def chi_squared_feature_selection():
 
 def genetic():
 	import numpy as np
-	import pandas as np
+	import pandas as pd
 	import matplotlib.pyplot as plt
+	chromo_size = 5
+	low = 0
+	high = 100
+	lol = np.random.randint(low, high + 1, chromo_size)
+	print(lol)
 
 def main():
 	genetic()
-	chi_squared_feature_selection()
+#	chi_squared_feature_selection()
 #	multiplication_basics()
 #	hello_world()
 #	matrix_multiplication()
