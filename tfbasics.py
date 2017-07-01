@@ -458,6 +458,12 @@ def genetic():
 	pop_size = 6
 	pop = np.random.randint(low, high + 1, (pop_size, chromo_size))
 	print(pop)
+	target = 200
+	cost = np.abs(np.sum(pop, axis = 1) - target)
+	graded = [(c, list(p)) for p, c in zip(pop, cost)]
+
+	for cost, chromo in graded:
+		print("chromo {}'s cost is {}".format(chromo, cost))
 
 def main():
 	genetic()
