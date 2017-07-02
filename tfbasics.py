@@ -326,9 +326,6 @@ def second_convnet():
 	print("test accuracy: {}".format(acc))
 
 def recurrent_neural_network_for_spam_detection():
-	import sys
-	reload(sys)  
-	sys.setdefaultencoding('utf8')
 	import os
 	import re
 	import io
@@ -467,18 +464,18 @@ def genetic():
 
 def main():
 	genetic()
-#	chi_squared_feature_selection()
-#	multiplication_basics()
-#	hello_world()
-#	matrix_multiplication()
-#	nearest_neighbor()
-#	logistic_regression()
-#	multilayer_perceptron()
-#	linear_regression()
-#	convolutional_network()
-#	second_convnet()
-#	recurrent_neural_network_for_spam_detection()
-#	gaussian_mixture_models()
-#	modern_multilayer_perceptron()
+	chi_squared_feature_selection()
+	multiplication_basics()
+	hello_world()
+	matrix_multiplication()
+	nearest_neighbor()
+	logistic_regression()
+	multilayer_perceptron()
+	linear_regression()
+	convolutional_network()
+	second_convnet()
+	recurrent_neural_network_for_spam_detection()
+	gaussian_mixture_models()
+	modern_multilayer_perceptron()
 	
 main()
