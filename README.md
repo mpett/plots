@@ -1,6 +1,4 @@
 # plots
-![Donut Project](images/im15.png)
-![Donut Project](images/im14.png)
 ![Donut Project](images/im13.png)
 ![Donut Project](images/im12.png)
 ![Donut Project](images/im11.png)
